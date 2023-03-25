@@ -119,17 +119,7 @@ function setAccentColor(color) {
   const [h, e, x, a] = color.toHEXA();
   const colorFromFunction = `#${h}${e}${x}${a ? a : ""}`;
 
-  mainBox.style.color = colorFromFunction;
-  darkBox.style.color = colorFromFunction;
-  customBox.style.color = colorFromFunction;
-
-  boxButton.style.color = colorFromFunction;
-  boxInput.style.color = colorFromFunction;
-  headingBox.style.color = colorFromFunction;
-  iconBox.style.color = colorFromFunction;
-
-  boxButton.style.borderColor = colorFromFunction;
-  boxInput.style.borderColor = colorFromFunction;
+  document.body.style.setProperty("--accent", colorFromFunction);
 
   const bgColor = backgroundPickr.getColor().toHEXA();
 
@@ -144,11 +134,7 @@ function setBackgroundColor(color) {
   const [h, e, x, a] = color.toHEXA();
   const colorFromFunction = `#${h}${e}${x}${a ? a : ""}`;
 
-  customBox.style.backgroundColor = colorFromFunction;
-  boxButton.style.backgroundColor = colorFromFunction;
-  boxInput.style.backgroundColor = colorFromFunction;
-  headingBox.style.backgroundColor = colorFromFunction;
-  iconBox.style.backgroundColor = colorFromFunction;
+  document.body.style.setProperty("--bg", colorFromFunction);
 
   const accentColor = accentPickr.getColor().toHEXA();
 
@@ -159,6 +145,7 @@ function setBackgroundColor(color) {
   });
 }
 
+console.log(document.getRootNode().getRootNode().getRootNode())
 function setSummary({ accent, background }) {
   fetch(`https://webaim.org/resources/contrastchecker/?fcolor=${accent}&bcolor=${background}&api`)
     .then((res) => res.json())
